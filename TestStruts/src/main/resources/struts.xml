@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<!-- --> 
+<struts>
+	<package name="welcome" namespace="/" extends="struts-default">
+		<action name="nameForm">
+			<result name="success">/WEB-INF/jsp/nameForm.jsp</result>
+		</action>
+		<action name="welcome" class="main.java.welcome.WelcomeAction">
+			<result name="success">/WEB-INF/jsp/welcome.jsp</result>
+			<result name="fail">/WEB-INF/jsp/nameForm.jsp</result>
+		</action>
+		<action name="projectlist" class="main.java.action.ProjectListAction">
+			<result name="success">/WEB-INF/jsp/projectlist.jsp</result>
+			<result name="fail">/WEB-INF/jsp/nameForm.jsp</result>
+		</action>
+	</package>
+
+	<!-- Add packages here--> 
+
+</struts>
+
