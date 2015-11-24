@@ -9,7 +9,10 @@
 </head>
 <body>
 	<h1>Project List</h1>
-	
+	<h2>
+		<a href="projectlist.action?page=${page-1}">上一页</a>|第${page}页|
+		<a href="projectlist.action?page=${page+1}">下一页</a>
+	</h2>
 	<table width="90%" border="2">
 		<tr>
 			<td>ID</td>
