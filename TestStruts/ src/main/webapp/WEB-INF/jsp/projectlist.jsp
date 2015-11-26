@@ -9,9 +9,31 @@
 </head>
 <body>
 	<h1>Project List</h1>
+	<!--  
 	<h2>
 		<a href="projectlist.action?page=${page-1}">上一页</a>|第${page}页|
 		<a href="projectlist.action?page=${page+1}">下一页</a>
+	</h2>
+	-->
+	<h2>
+		<c:choose>
+			<c:when test="${page gt 1 }">
+			<a href ="projectlist.action?page=${page-1 }">上一页</a>
+			</c:when>
+			<c:otherwise>
+				上一页
+			</c:otherwise>
+		</c:choose>
+		|第${ page }页|
+		
+		<c:choose>
+			<c:when test="${page lt totalPages }">
+			<a href="projectlist.action?page=${page+1 }">下一页</a>
+			</c:when>
+			<c:otherwise>
+				下一页
+			</c:otherwise>
+		</c:choose>
 	</h2>
 	<table width="90%" border="2">
 		<tr>

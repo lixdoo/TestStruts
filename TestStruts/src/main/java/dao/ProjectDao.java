@@ -15,7 +15,7 @@ public class ProjectDao {
 	
 	private static final String findAll2 = "select id ,name,startdate,enddate from t_project limit ?,?";
 	
-	
+	private static final String getTotalPages = "select count(*) from t_project ";
 	
 	public List<ProjectEntity> findAll(){
 		Connection con = null;
@@ -69,13 +69,36 @@ public class ProjectDao {
 		}
 		
 	}
+	
+	public int getTotalPages(int rowsPerPage){
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try{
+			con = (Connection)ConnectionUtils.openConnection();
+			stmt = con.prepareStatement(getTotalPages);
+			rs = stmt.executeQuery();
+			rs.next();
+			int totalRows = rs.getInt(1);
+			if(totalRows%rowsPerPage == 0){
+				return totalRows / rowsPerPage;
+			}else {
+				return totalRows / rowsPerPage + 1;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	
 	//测试
 	public static void main(String[] args){
 		ProjectDao dao = new ProjectDao();
 //		List<ProjectEntity> list = dao.findAll();
-		List<ProjectEntity> list = dao.findAll(2,5);
-		for(ProjectEntity p : list){
-			System.out.println(p.getEndDate());
-		}
+//		List<ProjectEntity> list = dao.findAll(2,5);
+//		for(ProjectEntity p : list){
+//			System.out.println(p.getEndDate());
+//		}
+		System.out.println(dao.getTotalPages(3));
 	}
 }

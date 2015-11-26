@@ -12,6 +12,10 @@ public class ProjectListAction {
 	//output
 	private List<ProjectEntity> projectList;
 	
+	
+
+	private int totalPages;
+	
 	public int getPage() {
 		return page;
 	}
@@ -23,6 +27,7 @@ public class ProjectListAction {
 	public String execute(){
 		ProjectDao projectDao = new ProjectDao();
 		projectList = projectDao.findAll(page,5);
+		totalPages = projectDao.getTotalPages(5);
 		return "success";
 	}
 
@@ -33,7 +38,13 @@ public class ProjectListAction {
 	public void setProjectList(List<ProjectEntity> projectList) {
 		this.projectList = projectList;
 	}
-	
+	public int getTotalPages() {
+		return totalPages;
+	}
+
+	public void setTotalPages(int totalPages) {
+		this.totalPages = totalPages;
+	}
 	
 	
 }
