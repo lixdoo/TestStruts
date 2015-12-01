@@ -7,7 +7,7 @@ import com.opensymphony.xwork2.ActionContext;
 import main.java.dao.login.dao.UserDao;
 import main.java.entitys.login.entity.User;
 
-public class LoginAction {
+public class LoginAction extends BaseAction{
 	private User user;
 	
 	//良好的编程习惯：将dao作为属性使用
@@ -27,9 +27,19 @@ public class LoginAction {
 		if(user!=null){
 			//登陆成功
 			//获得session的方法
-			ActionContext ctx = ActionContext.getContext();
-			Map<String,Object> session = ctx.getSession();
-			session.put("001",user);
+			/**
+			 * 这种访问Session的方式“侵入性”较强。因为ActionContext是struts2的API
+			 */
+//			ActionContext ctx = ActionContext.getContext();
+//			Map<String,Object> session = ctx.getSession();
+//			session.put("LoginAction",user);
+			
+			
+			
+			/*
+			 * 直接使用父类中的session
+			 */
+			session.put("001", user);
 			return "success";
 		}else{
 			//登陆失败

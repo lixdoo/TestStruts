@@ -24,6 +24,23 @@
 			<result name="success">/WEB-INF/jsp/main.jsp</result>
 			<result name="fail">/WEB-INF/jsp/loginform.jsp</result>
 		</action>
+		
+		<!-- 通配符实例 -->
+		<action name="*_*_*" class="main.java.action.login.action.{1}Action" method="{2}">
+			<result name="success">/WEB-INF/jsp/test/{3}.jsp</result>
+		</action>
+		
+		<!-- 给Action属性参数注入 -->
+		<action name="param" class="main.java.action.login.action.ParamAction" >
+			<param name="param1">ABC</param>
+			<param name="param2">10</param>
+		</action>		
+		<!-- 使用OGNL标签 -->
+		<action name="user" class="main.java.action.login.action.UserAction">
+			<result name="success" type="dispatcher">
+				/WEB-INF/jsp/user.jsp?userId=${user.userId}
+			</result>
+		</action>
 	</package>
 
 	<!-- Add packages here--> 
