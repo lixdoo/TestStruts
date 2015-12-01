@@ -16,6 +16,14 @@
 			<result name="success">/WEB-INF/jsp/projectlist.jsp</result>
 			<result name="fail">/WEB-INF/jsp/nameForm.jsp</result>
 		</action>
+		<action name="loginform" class="main.java.action.login.action.LoginAction" method="form" >
+			<result name="success">/WEB-INF/jsp/loginform.jsp</result>		
+		</action>
+		
+		<action name="login" class="main.java.action.login.action.LoginAction" method="login">
+			<result name="success">/WEB-INF/jsp/main.jsp</result>
+			<result name="fail">/WEB-INF/jsp/loginform.jsp</result>
+		</action>
 	</package>
 
 	<!-- Add packages here--> 
