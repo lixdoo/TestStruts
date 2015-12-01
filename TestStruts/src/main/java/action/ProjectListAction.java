@@ -11,6 +11,7 @@ public class ProjectListAction {
 	
 	//output
 	private List<ProjectEntity> projectList;
+	private int rowPerPage;     //每页分几条记录
 	
 	
 
@@ -26,8 +27,8 @@ public class ProjectListAction {
 
 	public String execute(){
 		ProjectDao projectDao = new ProjectDao();
-		projectList = projectDao.findAll(page,5);
-		totalPages = projectDao.getTotalPages(5);
+		projectList = projectDao.findAll(page,rowPerPage);
+		totalPages = projectDao.getTotalPages(rowPerPage);
 		return "success";
 	}
 
@@ -44,6 +45,14 @@ public class ProjectListAction {
 
 	public void setTotalPages(int totalPages) {
 		this.totalPages = totalPages;
+	}
+
+	public int getRowPerPage() {
+		return rowPerPage;
+	}
+
+	public void setRowPerPage(int rowPerPage) {
+		this.rowPerPage = rowPerPage;
 	}
 	
 	

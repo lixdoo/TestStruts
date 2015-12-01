@@ -13,6 +13,7 @@
 			<result name="fail">/WEB-INF/jsp/nameForm.jsp</result>
 		</action>
 		<action name="projectlist" class="main.java.action.ProjectListAction">
+			<param name="rowPerPage">3</param>
 			<result name="success">/WEB-INF/jsp/projectlist.jsp</result>
 			<result name="fail">/WEB-INF/jsp/nameForm.jsp</result>
 		</action>
