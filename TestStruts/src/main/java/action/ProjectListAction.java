@@ -2,15 +2,17 @@ package main.java.action;
 
 import java.util.List;
 
+import main.java.action.login.action.BaseAction;
 import main.java.dao.ProjectDao;
 import main.java.entitys.ProjectEntity;
 
-public class ProjectListAction {
+public class ProjectListAction extends BaseAction{
 	//input
 	private int page = 1;
 	
 	//output
 	private List<ProjectEntity> projectList;
+	private ProjectDao projectDao = new ProjectDao();
 	private int rowPerPage;     //每页分几条记录
 	
 	
@@ -26,7 +28,7 @@ public class ProjectListAction {
 	}
 
 	public String execute(){
-		ProjectDao projectDao = new ProjectDao();
+		
 		projectList = projectDao.findAll(page,rowPerPage);
 		totalPages = projectDao.getTotalPages(rowPerPage);
 		return "success";

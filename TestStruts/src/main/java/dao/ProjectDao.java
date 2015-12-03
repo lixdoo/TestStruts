@@ -2,6 +2,7 @@ package main.java.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,8 @@ public class ProjectDao {
 	private static final String findAll2 = "select id ,name,startdate,enddate from t_project limit ?,?";
 	
 	private static final String getTotalPages = "select count(*) from t_project ";
+	
+	private static final String delete = "delect from t_project where t_id=? ";
 	
 	public List<ProjectEntity> findAll(){
 		Connection con = null;
@@ -89,6 +92,34 @@ public class ProjectDao {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
+	}
+	
+	public void delete (Integer[] projects){
+		Connection con = null;
+		PreparedStatement stmt = null;
+		try{
+			con = (Connection) ConnectionUtils.openConnection();
+			con.setAutoCommit(false);
+			stmt = con.prepareStatement(delete);
+			for(int i=0;i<projects.length;i++){
+				stmt.setInt(1, projects[i]);
+				stmt.addBatch();
+			}
+			stmt.executeBatch();
+			con.commit();
+			
+		}catch(Exception e){
+			try{
+				con.rollback();
+			}catch(SQLException e1){
+				
+			}
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}finally{
+			ConnectionUtils.closeConnection(con);
+		}
+		
 	}
 	
 	//测试

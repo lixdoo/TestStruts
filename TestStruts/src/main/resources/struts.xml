@@ -42,6 +42,16 @@
 				/WEB-INF/jsp/user.jsp?userId=${user.userId}
 			</result>
 		</action>
+		
+		
+		
+		
+		
+		
+		
+		<action name="utitag" class="main.java.action.UITagAction" method="form">
+			<result name="success">/WEB-INF/jsp/uitag.jsp</result>
+		</action>
 	</package>
 
 	<!-- Add packages here--> 
